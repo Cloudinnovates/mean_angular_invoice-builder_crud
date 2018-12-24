@@ -8,14 +8,24 @@ import { ToolbarComponent } from './component/toolbar/toolbar.component';
 import { MaterialModule } from '../shared/material.module';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { InvoicesModule } from '../invoices/invoices.module';
+import { ClientsModule } from '../clients/clients.module';
 
 
 @NgModule({
-  declarations: [DashboardComponent, MainContentComponent, SideNavComponent, ToolbarComponent],
+  declarations: [
+    DashboardComponent,
+    MainContentComponent,
+    SideNavComponent,
+    ToolbarComponent,
+
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    InvoicesModule, // ! importing Feature Module in dashboard Module itself, rather than AppModule
+    ClientsModule // ! importing Feature Module in dashboard Module itself,
   ]
 })
 export class InvoiceBuilderModule { }
