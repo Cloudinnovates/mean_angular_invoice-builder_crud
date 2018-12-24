@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'invoice-builder',
-    loadChildren: './invoice-builder/invoice-builder.module#InvoiceBuilderModule'
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#InvoiceBuilderModule'
   }, // lazy loading InvoiceBuilderModule
-  { path: '**', redirectTo: 'invoice-builder' }
+  { path: '**', redirectTo: 'dashboard' }
 
 ];
 
