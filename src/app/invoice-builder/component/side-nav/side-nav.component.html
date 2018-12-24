@@ -1,0 +1,22 @@
+<mat-sidenav-container class="app-sidenav-container">
+
+  <!-- opened and mode attributes r provide by angular-material -->
+  <mat-sidenav class="app-sidenav" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over': 'push'" #sidenav>
+    <mat-toolbar color="accent">Dashboard</mat-toolbar>
+    <mat-list>
+      <mat-list-item>1</mat-list-item>
+      <mat-list-item>2</mat-list-item>
+      <mat-list-item>3</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="app-sidenav-content">
+    Main content
+    <app-toolbar (toogleSideNav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
