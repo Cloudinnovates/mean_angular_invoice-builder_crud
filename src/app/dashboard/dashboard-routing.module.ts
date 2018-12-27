@@ -5,6 +5,7 @@ import { MainContentComponent } from './component/main-content/main-content.comp
 import { DashboardComponent } from './dashboard.component';
 import { InvoiceListingComponent } from '../invoices/component/invoice-listing/invoice-listing.component';
 import { ClientListingComponent } from '../clients/component/client-listing/client-listing.component';
+import { InvoiceFormComponent } from '../invoices/component/invoice-form/invoice-form.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: '', component: MainContentComponent },
       { path: 'invoices', component: InvoiceListingComponent },
+      { path: 'invoices/new', component: InvoiceFormComponent },
       { path: 'clients', component: ClientListingComponent },
     ]
   }

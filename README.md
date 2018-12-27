@@ -42,3 +42,17 @@ Since it is light weight, so can easily be used with angular-material
 
 npm install @angular/flex-layout@latest --save
 
+documentation: https://github.com/angular/flex-layout/wiki/BreakPoints 
+
+
+or use-> https://material.angular.io/cdk/layout/overview
+
+
+------------------------------------------------------------------------------------------------
+cli-
+Service : $ ng g s invoices/services/invoice
+Model : $ ng g class invoices/models/invoice
+        $ ng g class invoices/models/createInvoice
+
+
+------------------------------------------------------------------------------------------------
