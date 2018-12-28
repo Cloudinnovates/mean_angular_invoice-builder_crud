@@ -3,6 +3,7 @@ import { InvoiceService } from '../../services/invoice.service';
 import { Observable } from 'rxjs';
 import { Invoice } from '../../models/invoice';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-invoice-listing',
@@ -18,7 +19,8 @@ export class InvoiceListingComponent implements OnInit {
   constructor(
     private _invoiceService: InvoiceService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,40 @@ export class InvoiceListingComponent implements OnInit {
     // this._router.navigate(['dashboard', 'invoices', 'new']);
   }
 
+  deleteClickHandler(id) {
+    console.log(id);
+    this._invoiceService.deleteInvoice(id)
+      .subscribe(
+        data => {
+
+          // !update the table
+          console.log(this.dataSource);
+          const updatedList = this.dataSource.map(item => {
+            return item._id === data['message']['_id'];
+          });
+          console.log(updatedList);
+          console.log(this.dataSource);
+          // this.dataSource = [...updatedList];
+
+          // !show snackbar
+          this.openSnackBar(`Deleted ${data['message']['item']} successfully`, 'Success');
+        },
+        err => {
+          this.errorHandler(err, 'Falied to delete invoice');
+        }
+      );
+  }
+
+  private errorHandler(error, message) {
+    console.error(error);
+    this.openSnackBar(message, 'Error');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 
 }
