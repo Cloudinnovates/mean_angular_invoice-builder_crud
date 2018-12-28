@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Invoice } from '../models/invoice';
 import { map } from 'rxjs/operators';
 import { CreateInvoice } from '../models/create-invoice';
+import { UpdateInvoice } from '../models/update-invoice';
 
 const BASE_URL = 'http://localhost:3000/api';
 
@@ -36,5 +37,34 @@ export class InvoiceService {
     return this._http.delete<Invoice>(`${BASE_URL}/invoice/${id}`);
   }
 
+  getInvoiceById(id: string): Observable<{}> {
+    return this._http.get<Invoice>(`${BASE_URL}/invoice/${id}`)
+      .pipe(
+        map(responseData => {
+          responseData['itemControl'] = responseData['message']['item'];
+          responseData['quantityControl'] = responseData['message']['quantity'];
+          responseData['dateControl'] = responseData['message']['date'];
+          responseData['duedateControl'] = responseData['message']['dueDate'];
+          responseData['rateControl'] = responseData['message']['rate'];
+          responseData['taxControl'] = responseData['message']['tax'];
+          console.log('responseData', responseData);
+          return responseData;
+        })
+      );
+  }
+
+  updateInvoice(id: string, invoice): Observable<Invoice> {
+
+    const payload = {
+      item: invoice.itemControl,
+      quantity: invoice.quantityControl,
+      date: invoice.dateControl,
+      dueDate: invoice.duedateControl,
+      rate: invoice.rateControl,
+      tax: invoice.taxControl,
+    };
+
+    return this._http.put<Invoice>(`${BASE_URL}/invoice/${id}`, payload);
+  }
 }
 

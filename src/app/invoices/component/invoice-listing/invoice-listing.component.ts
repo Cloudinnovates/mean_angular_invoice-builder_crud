@@ -40,13 +40,7 @@ export class InvoiceListingComponent implements OnInit {
         data => {
 
           // !update the table
-          console.log(this.dataSource);
-          const updatedList = this.dataSource.map(item => {
-            return item._id === data['message']['_id'];
-          });
-          console.log(updatedList);
-          console.log(this.dataSource);
-          // this.dataSource = [...updatedList];
+          this.reInitializeTableData(); // will make a bakend call (GETALL)
 
           // !show snackbar
           this.openSnackBar(`Deleted ${data['message']['item']} successfully`, 'Success');
@@ -56,6 +50,15 @@ export class InvoiceListingComponent implements OnInit {
         }
       );
   }
+
+  reInitializeTableData() {
+    this.invoices$ = this._invoiceService.getInvoices();
+  }
+
+  editClickHandler(id: string) {
+    this._router.navigate([id], { relativeTo: this._route });
+  }
+
 
   private errorHandler(error, message) {
     console.error(error);
@@ -67,6 +70,7 @@ export class InvoiceListingComponent implements OnInit {
       duration: 2000,
     });
   }
+
 
 
 }
