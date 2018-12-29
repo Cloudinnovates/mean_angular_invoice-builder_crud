@@ -44,10 +44,9 @@ export class InvoiceFormComponent implements OnInit {
     if (this.updatedInvoiceOnEdit) { // updatedInvoiceOnEdit object exist, then edit mode
 
       this._invoiceService
-        .updateInvoice(this.updatedInvoiceOnEdit['message']['_id'], this.invoiceFormGroup.value)
+        .updateInvoice(this.updatedInvoiceOnEdit['data']['_id'], this.invoiceFormGroup.value)
         .subscribe(
           data => {
-            console.log('responseData', data);
             this.openSnackBar(data['message'], 'Success');
             this.invoiceFormGroup.reset();
             this._router.navigate(['dashboard', 'invoices']);
@@ -60,7 +59,6 @@ export class InvoiceFormComponent implements OnInit {
 
       this._invoiceService.createInvoice(this.invoiceFormGroup.value).subscribe(
         (data) => {
-
           this.openSnackBar(data['message'], 'Success');
           this.invoiceFormGroup.reset();
           this._router.navigate(['dashboard', 'invoices']);

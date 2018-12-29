@@ -41,12 +41,12 @@ export class InvoiceService {
     return this._http.get<Invoice>(`${BASE_URL}/invoice/${id}`)
       .pipe(
         map(responseData => {
-          responseData['itemControl'] = responseData['message']['item'];
-          responseData['quantityControl'] = responseData['message']['quantity'];
-          responseData['dateControl'] = responseData['message']['date'];
-          responseData['duedateControl'] = responseData['message']['dueDate'];
-          responseData['rateControl'] = responseData['message']['rate'];
-          responseData['taxControl'] = responseData['message']['tax'];
+          responseData['itemControl'] = responseData['data']['item'];
+          responseData['quantityControl'] = responseData['data']['quantity'];
+          responseData['dateControl'] = responseData['data']['date'];
+          responseData['duedateControl'] = responseData['data']['dueDate'];
+          responseData['rateControl'] = responseData['data']['rate'];
+          responseData['taxControl'] = responseData['data']['tax'];
           console.log('responseData', responseData);
           return responseData;
         })

@@ -43,7 +43,7 @@ export class InvoiceListingComponent implements OnInit {
           this.reInitializeTableData(); // will make a bakend call (GETALL)
 
           // !show snackbar
-          this.openSnackBar(`Deleted ${data['message']['item']} successfully`, 'Success');
+          this.openSnackBar(`Deleted ${data['data']['item']} successfully`, 'Success');
         },
         err => {
           this.errorHandler(err, 'Falied to delete invoice');
